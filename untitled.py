@@ -59,9 +59,9 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.pushButton.clicked.connect(self.dologin)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -70,8 +70,17 @@ class Ui_MainWindow(object):
         self.password.setPlaceholderText(_translate("MainWindow", "Password"))
         self.pushButton.setText(_translate("MainWindow", "Log In"))
 
+    def dologin(self):
+        username,password = self.getcredentials()
 
-if __name__ == "__main__":
+
+    def getcredentials(self):
+        username = self.login.text()
+        password = self.password.text()
+        return username, password
+
+
+def openwin():
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()

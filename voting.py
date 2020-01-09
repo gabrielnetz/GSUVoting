@@ -55,6 +55,3 @@ def Voting():
     writePresidents(a,b,c,d)
 
     print("your votes were cast")
-
-
-
