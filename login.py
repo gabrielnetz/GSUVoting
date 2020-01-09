@@ -89,20 +89,12 @@ class Ui_MainWindow(object):
             msg.setStandardButtons(QMessageBox.Ok)
             retval = msg.exec_()
 
-
         file.close()
-
-
 
     def getcredentials(self):
         username = self.login.text()
         password = self.password.text()
         return username, password
-
-
-
-
-
 
 
 def Login():

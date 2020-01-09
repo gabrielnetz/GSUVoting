@@ -8,7 +8,7 @@ else:
     exit()
 # If date is valid, system starts voting
 
-login.Login()  # Login and authenticate based on the StudentRecords.txt
+#login.Login()  # Login and authenticate based on the StudentRecords.txt
 voting.Voting()  # Vote and save records to votes.txt
 election.countVotes()  # Count,sort and display the votes from the files
 
