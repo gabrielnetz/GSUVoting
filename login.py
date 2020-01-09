@@ -1,7 +1,10 @@
+from PyQt5.QtWidgets import QMessageBox
+
 import untitled
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+
 
 
 
@@ -47,7 +50,7 @@ class Ui_MainWindow(object):
         self.logo.setGeometry(QtCore.QRect(40, 0, 421, 251))
         self.logo.setAutoFillBackground(False)
         self.logo.setText("")
-        self.logo.setPixmap(QtGui.QPixmap("../imagesgui/Logo_Web_2020.png"))
+        self.logo.setPixmap(QtGui.QPixmap("Logo_Web_2020.png"))
         self.logo.setScaledContents(True)
         self.logo.setObjectName("logo")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -77,19 +80,23 @@ class Ui_MainWindow(object):
         if username1 == username and password1 == password:
             print("Hello", username)
             print("Welcome to the voting system!")
+            self.close()
         else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Username or Password Incorrect")
+            msg.setWindowTitle("Failed Login")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
+
 
         file.close()
-        self.close()
+
 
 
     def getcredentials(self):
         username = self.login.text()
         password = self.password.text()
-        if not username:
-            QtGui.QMessageBox.warning(self, 'Guess What?', 'Username Missing!')
-        elif not password:
-            QtGui.QMessageBox.warning(self, 'Guess What?', 'Password Missing!')
         return username, password
 
 

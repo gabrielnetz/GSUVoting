@@ -122,7 +122,7 @@ def STVBS():
 
 
 
-GSUElections = createElection(2020,3,2,2020,4,3)
+GSUElections = createElection(2020,1,1,2020,4,3)
 finalist = []
 
 
