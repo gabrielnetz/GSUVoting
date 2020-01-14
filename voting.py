@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         self.logo.setGeometry(QtCore.QRect(50, 20, 241, 151))
         self.logo.setAutoFillBackground(False)
         self.logo.setText("")
-        self.logo.setPixmap(QtGui.QPixmap("../imagesgui/Logo_Web_2020.png"))
+        self.logo.setPixmap(QtGui.QPixmap("Logo_Web_2020.png"))
         self.logo.setScaledContents(True)
         self.logo.setObjectName("logo")
         self.label = QtWidgets.QLabel(self.centralwidget)
