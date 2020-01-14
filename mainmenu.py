@@ -1,15 +1,10 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'mainmenu.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
+import candidates, login,election, sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+sys.setrecursionlimit(1500)
 
+username = "UsernamePlaceholder"
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -20,11 +15,11 @@ class Ui_MainWindow(object):
         self.logo.setGeometry(QtCore.QRect(280, 40, 421, 251))
         self.logo.setAutoFillBackground(False)
         self.logo.setText("")
-        self.logo.setPixmap(QtGui.QPixmap("../imagesgui/Logo_Web_2020.png"))
+        self.logo.setPixmap(QtGui.QPixmap("Logo_Web_2020.png"))
         self.logo.setScaledContents(True)
         self.logo.setObjectName("logo")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(20, 20, 231, 101))
+        self.pushButton.setGeometry(QtCore.QRect(20, 20, 351, 101))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Light")
         font.setPointSize(17)
@@ -83,6 +78,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        #self.pushButton.clicked.connect(VoteUI())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -95,15 +91,90 @@ class Ui_MainWindow(object):
         self.pushButton_3.setText(_translate("MainWindow", "Vote for FACH Officer"))
         self.pushButton_4.setText(_translate("MainWindow", "Vote for BS Officer"))
         self.pushButton_5.setText(_translate("MainWindow", "Vote for FEH Officer"))
-        self.label.setText(_translate("MainWindow", "Welcome (ID WOULD BE HERE)"))
-        self.label_2.setText(_translate("MainWindow", "The Current Election closes at DD/MM HH/MM/SS"))
+        self.label.setText(_translate("MainWindow", "Welcome {}".format(username)))
+        self.label_2.setText(_translate("MainWindow", "The Current Election closes at {}".format(election.GSUElections.enddate)))
 
 
-if __name__ == "__main__":
+    def writeGSUOfficers(self,a, b, c, d):
+        f = open("votesGSU.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+    def writeFEHOfficers(self,a, b, c, d):
+        f = open("votesFEH.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+    def writeFACHOfficers(self,a, b, c, d):
+        f = open("votesFACH.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+    def writeBSOfficers(self,a, b, c, d):
+        f = open("votesBS.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+    def writePresidents(self,a, b, c, d):
+        f = open("votesPres.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+    def VoteGSU(self):
+        candidates.showGSUOfficers()
+        a, b, c, d = selectOptions()
+        self.writeGSUOfficers(a, b, c, d)
+
+    def VoteFEH(self):
+        candidates.showFEHOfficers()
+        a, b, c, d = selectOptions()
+        self.writeFEHOfficers(a, b, c, d)
+
+    def VoteFACH(self):
+        candidates.showFACHOfficers()
+        a, b, c, d = selectOptions()
+        self.writeFACHOfficers(a, b, c, d)
+
+    def VoteBS(self):
+        candidates.showBSOfficers()
+        a, b, c, d = selectOptions()
+        self.writeBSOfficers(a, b, c, d)
+
+    def VotePres(self):
+        candidates.showPresidents()
+        a, b, c, d = selectOptions()
+        self.writePresidents(a, b, c, d)
+
+    def selectOptions(self):
+        a = int(input("select your first option")) - 1
+        b = int(input("select your second option")) - 1
+        while b == a:
+            b = int(input("you cant select the same option twice, please insert someone else")) - 1
+        c = int(input("select your third option")) - 1
+        while c == a or c == b:
+            c = int(input("you cant select the same option twice, please insert someone else")) - 1
+        d = int(input("select your fourth option")) - 1
+        while d == a or d == b or d == c:
+            d = int(input("you cant select the same option twice, please insert someone else")) - 1
+        return a, b, c, d
+
+
+def Voting():
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    MainWindow2 = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    ui.setupUi(MainWindow2)
+    MainWindow2.show()
     sys.exit(app.exec_())
+
+def selectOptions():
+    a = int(input("select your first option")) - 1
+    b = int(input("select your second option")) - 1
+    while b == a:
+        b = int(input("you cant select the same option twice, please insert someone else")) - 1
+    c = int(input("select your third option")) - 1
+    while c == a or c == b:
+        c = int(input("you cant select the same option twice, please insert someone else")) - 1
+    d = int(input("select your fourth option")) - 1
+    while d == a or d == b or d == c:
+        d = int(input("you cant select the same option twice, please insert someone else")) - 1
+    return a, b, c, d
+
+
+print("your votes were cast")
