@@ -71,13 +71,19 @@ class Ui_MainWindow(object):
     def dologin(self):
         username,password = self.getcredentials()
         file = open("StudentVoters.txt", "r")
-
+        check = False
+        logins = []
         for row in file:
             field = row.split(",")
-            username1 = field[0]
-            password1 = field[1]
+            logins.append([field[0],field[1]])
+        print(logins)
 
-        if username1 == username and password1 == password:
+        for i in range(len(logins)):
+            if username == logins[i][0] and password == logins[i][1]:
+                check = True
+                break
+
+        if check:
             print("Hello", username)
             print("Welcome to the voting system!")
             self.close()
