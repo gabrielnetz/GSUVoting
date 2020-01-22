@@ -1,10 +1,8 @@
 from PyQt5.QtWidgets import QMessageBox
-
 import untitled
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys
-
+import sys,mainmenu,voting
+import PyQt5
 
 
 
@@ -61,6 +59,15 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.pushButton.clicked.connect(self.dologin)
 
+
+    def OpenMenu(self):
+        self.mainmenu = QtWidgets.QMainWindow()
+        self.ui = mainmenu.Ui_MainWindow()
+        self.ui.setupUi(self.mainmenu)
+        login.hide()
+        self.mainmenu.show()
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -84,9 +91,8 @@ class Ui_MainWindow(object):
                 break
 
         if check:
-            print("Hello", username)
-            print("Welcome to the voting system!")
-            self.close()
+            self.OpenMenu()
+
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
@@ -103,10 +109,10 @@ class Ui_MainWindow(object):
         return username, password
 
 
-def Login():
+if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    login = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    ui.setupUi(login)
+    login.show()
     sys.exit(app.exec_())

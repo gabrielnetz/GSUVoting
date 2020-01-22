@@ -1,16 +1,20 @@
-# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'voting.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
+import candidates
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 
+global election
+
+election = 0
+cand0 = 0
+cand1 = 0
+cand2 = 0
+cand3 = 0
 
 class Ui_MainWindow(object):
+    global votes
+    votes = []
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(685, 572)
@@ -82,22 +86,94 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
+        self.pushButton.clicked.connect(lambda: self.setvote(0))
+        self.pushButton_2.clicked.connect(lambda: self.setvote(1))
+        self.pushButton_3.clicked.connect(lambda: self.setvote(2))
+        self.pushButton_4.clicked.connect(lambda: self.setvote(3))
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        if election == "president":
+            cand0 = candidates.BSOfficers[0].name
+            cand1 = candidates.BSOfficers[1].name
+            cand2 = candidates.BSOfficers[2].name
+            cand3 = candidates.BSOfficers[3].name
+
+    def setvote(self,x):
+        votes.append(x)
+        if x == 0:
+            self.pushButton.setEnabled(False)
+        if x == 1:
+            self.pushButton_2.setEnabled(False)
+        if x == 2:
+            self.pushButton_3.setEnabled(False)
+        if x == 3:
+            self.pushButton_4.setEnabled(False)
+        if len(votes) == 4:
+            if election == "GSU Elections":
+                writeGSUOfficers(votes[0],votes[1],votes[2],votes[3])
+            if election == "FACH Elections":
+                writeFACHOfficers(votes[0],votes[1],votes[2],votes[3])
+            if election == "BS Elections":
+                writeBSOfficers(votes[0],votes[1],votes[2],votes[3])
+            if election == "FEH Elections":
+                writeFEHOfficers(votes[0],votes[1],votes[2],votes[3])
+            if election == "President Elections":
+                writePresidents(votes[0],votes[1],votes[2],votes[3])
+
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Your Votes were Cast Succesfully")
+            msg.setWindowTitle("Voting Complete")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "(POSITION) Election"))
-        self.pushButton.setText(_translate("MainWindow", "CANDIDATE"))
-        self.pushButton_2.setText(_translate("MainWindow", "CANDIDATE"))
-        self.pushButton_3.setText(_translate("MainWindow", "CANDIDATE"))
-        self.pushButton_4.setText(_translate("MainWindow", "CANDIDATE"))
-        self.label_2.setText(_translate("MainWindow", "Choose your First Option"))
+        self.label.setText(_translate("MainWindow", "{}".format(election)))
+        self.pushButton.setText(_translate("MainWindow","{}".format(cand0)))
+        self.pushButton_2.setText(_translate("MainWindow","{}".format(cand1)))
+        self.pushButton_3.setText(_translate("MainWindow","{}".format(cand2)))
+        self.pushButton_4.setText(_translate("MainWindow","{}".format(cand3)))
+        self.label_2.setText(_translate("MainWindow","Choose your {} option".format("Option")))
 
+    def writeGSUOfficers(self,a, b, c, d):
+        f = open("votesGSU.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
 
-if __name__ == "__main__":
+    def writeFEHOfficers(self,a, b, c, d):
+        f = open("votesFEH.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+    def writeFACHOfficers(self,a, b, c, d):
+        f = open("votesFACH.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+    def writeBSOfficers(self,a, b, c, d):
+        f = open("votesBS.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+    def writePresidents(self,a, b, c, d):
+        f = open("votesPres.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+def voteGSU():
+    global election,cand0,cand1,cand2,cand3
+
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    writeGSUOfficers(votes[0],votes[1],votes[2],votes[3])
+    sys.exit(app.exec_())
+
+def voteFACH():
+    global election,cand0,cand1,cand2,cand3
+
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
@@ -105,3 +181,58 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+def voteFEH():
+    global election,cand0,cand1,cand2,cand3
+
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+
+def voteBS():
+    global election,cand0,cand1,cand2,cand3
+    election = "BS Elections"
+    cand0 = candidates.BSOfficers[0].name
+    cand1 = candidates.BSOfficers[1].name
+    cand2 = candidates.BSOfficers[2].name
+    cand3 = candidates.BSOfficers[3].name
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+
+def writeGSUOfficers(a, b, c, d):
+        f = open("votesGSU.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+def writeFEHOfficers(a, b, c, d):
+        f = open("votesFEH.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+def writeFACHOfficers(a, b, c, d):
+        f = open("votesFACH.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+def writeBSOfficers(a, b, c, d):
+        f = open("votesBS.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))
+
+def writePresidents(a, b, c, d):
+        f = open("votesPres.txt", "a")
+        f.write("%s,%s,%s,%s\n" % (a, b, c, d))

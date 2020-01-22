@@ -1,4 +1,4 @@
-import election,mainmenu,login
+import election,mainmenu,login,voting,candidates
 
 # Check if System Date/Time is valid for voting
 if election.electionValid():
@@ -7,6 +7,7 @@ else:
     print("The voting time is closed")
     exit()
 # If date is valid, system starts voting
+
 
 login.Login()  # Login and authenticate based on the StudentRecords.txt
 mainmenu.Voting()  # Vote and save records to votes.txt
