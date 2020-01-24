@@ -11,7 +11,6 @@ else:
 
 login.Login()  # Login and authenticate based on the StudentRecords.txt
 mainmenu.Voting()  # Vote and save records to votes.txt
-election.countVotes()  # Count,sort and display the votes from the files
 
 
 

@@ -1,2 +1,2 @@
-gabriel,gabriel,0,0,0,0,0
-sandro,sandro,0,0,0,0,0
+gabriel,gabriel
+sandro,sandro

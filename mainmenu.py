@@ -2,9 +2,26 @@ import candidates, login,election, sys,voting
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-username = "UsernamePlaceholder"
+f = open("username.txt","r")
+username = f.read()
+GSUVoted = open("GSUVoted.txt", "r")
+GSUvoters = GSUVoted.read().splitlines()
+
+FACHVoted = open("FACHVoted.txt", "r")
+FACHvoters = FACHVoted.read().splitlines()
+
+FEHVoted = open("FEHVoted.txt", "r")
+FEHvoters = FEHVoted.read().splitlines()
+
+BSVoted = open("BSVoted.txt", "r")
+BSvoters = BSVoted.read().splitlines()
+
+PresVoted = open("PresVoted.txt", "r")
+Presvoters = PresVoted.read().splitlines()
 class Ui_MainWindow(object):
+
     def setupUi(self, MainWindow):
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(727, 612)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -81,6 +98,19 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(self.OpenFACH)
         self.pushButton_4.clicked.connect(self.OpenBS)
         self.pushButton_5.clicked.connect(self.OpenFEH)
+        if username in GSUvoters:
+            self.pushButton_2.setEnabled(False)
+        if username in FACHvoters:
+            self.pushButton_3.setEnabled(False)
+        if username in BSvoters:
+            self.pushButton_4.setEnabled(False)
+        if username in FEHvoters:
+            self.pushButton_5.setEnabled(False)
+        if username in Presvoters:
+            self.pushButton.setEnabled(False)
+
+
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

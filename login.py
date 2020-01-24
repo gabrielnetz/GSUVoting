@@ -70,23 +70,27 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Login"))
         self.login.setPlaceholderText(_translate("MainWindow", "University ID"))
         self.password.setPlaceholderText(_translate("MainWindow", "Password"))
         self.pushButton.setText(_translate("MainWindow", "Log In"))
 
     def dologin(self):
+        global username
         username,password = self.getcredentials()
+        print(username)
         file = open("StudentVoters.txt", "r")
         check = False
         logins = []
         for row in file:
-            field = row.split(",")
+            field = row.rstrip('\n').split(",")
             logins.append([field[0],field[1]])
         print(logins)
 
         for i in range(len(logins)):
             if username == logins[i][0] and password == logins[i][1]:
+                f = open("username.txt","w")
+                f.write(username)
                 check = True
                 break
 
@@ -109,10 +113,17 @@ class Ui_MainWindow(object):
         return username, password
 
 
+
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     login = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(login)
     login.show()
+    app_icon = QtGui.QIcon()
+    app_icon.addFile("Logo_Web_2020.png")
+    app.setWindowIcon(app_icon)
     sys.exit(app.exec_())
+
+

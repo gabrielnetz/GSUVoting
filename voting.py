@@ -2,8 +2,8 @@
 import candidates
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+import mainmenu
 
-global election
 
 election = 0
 cand0 = 0
@@ -93,11 +93,6 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        if election == "president":
-            cand0 = candidates.BSOfficers[0].name
-            cand1 = candidates.BSOfficers[1].name
-            cand2 = candidates.BSOfficers[2].name
-            cand3 = candidates.BSOfficers[3].name
 
     def setvote(self,x):
         votes.append(x)
@@ -110,16 +105,36 @@ class Ui_MainWindow(object):
         if x == 3:
             self.pushButton_4.setEnabled(False)
         if len(votes) == 4:
+            username = mainmenu.username
             if election == "GSU Elections":
                 writeGSUOfficers(votes[0],votes[1],votes[2],votes[3])
+                file = open("GSUVoted.txt","a")
+                file.write(username)
+                file.close()
             if election == "FACH Elections":
                 writeFACHOfficers(votes[0],votes[1],votes[2],votes[3])
+                file = open("FACHVoted.txt", "a")
+                file.write(username)
+                file.close()
             if election == "BS Elections":
                 writeBSOfficers(votes[0],votes[1],votes[2],votes[3])
+                file = open("BSVoted.txt", "a")
+                file.write(username)
+                file.close()
             if election == "FEH Elections":
                 writeFEHOfficers(votes[0],votes[1],votes[2],votes[3])
+                file = open("FEHVoted.txt", "a")
+                file.write(username)
+                file.close()
             if election == "President Elections":
+                file = open("PresVoted.txt", "a")
+                file.write(username)
+                file.close()
                 writePresidents(votes[0],votes[1],votes[2],votes[3])
+
+
+
+
 
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
@@ -127,6 +142,7 @@ class Ui_MainWindow(object):
             msg.setWindowTitle("Voting Complete")
             msg.setStandardButtons(QMessageBox.Ok)
             retval = msg.exec_()
+            app.exit()
 
 
     def retranslateUi(self, MainWindow):
@@ -137,7 +153,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow","{}".format(cand1)))
         self.pushButton_3.setText(_translate("MainWindow","{}".format(cand2)))
         self.pushButton_4.setText(_translate("MainWindow","{}".format(cand3)))
-        self.label_2.setText(_translate("MainWindow","Choose your {} option".format("Option")))
+        self.label_2.setText(_translate("MainWindow","Choose your Candidate"))
 
     def writeGSUOfficers(self,a, b, c, d):
         f = open("votesGSU.txt", "a")
