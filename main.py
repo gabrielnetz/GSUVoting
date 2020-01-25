@@ -1,25 +1,20 @@
-import candidates,election,voting,login
-from datetime import datetime
-
-# Login System should be in here, still in development
-
+import election,mainmenu,login,voting,candidates
 
 # Check if System Date/Time is valid for voting
-
 if election.electionValid():
     print("the voting time is open")
 else:
     print("The voting time is closed")
-    # exit() for test
-
+    exit()
 # If date is valid, system starts voting
 
-voting.Voting()
-election.countVotes()
+# login.Login()  # Login and authenticate based on the StudentRecords.txt
+# mainmenu.Voting()  # Vote and save records to votes.txt
+election.countVotes()  # Count,sort and display the votes from the files
 
 
 
-#hgfhg
+
 
 
 
