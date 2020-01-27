@@ -1,0 +1,150 @@
+--------------------------
+President Elections
+Voting Students = 12
+Winner:
+1 - Floyd Pherps	
+first options - 8  - Percentage 66.66666666666667 %
+second options - 3  - Percentage 25.0 %
+third options - 0  - Percentage 0.0 %
+fourth options - 1  - Percentage 8.333333333333334 %
+--------------------------
+Runner Up:
+2 - Carling Adacot	
+first options - 4
+second options - 4
+third options - 1
+fourth options - 3
+--------------------------
+Third Place:
+3 - Abed Nadhir  
+first options - 0
+second options - 5
+third options - 6
+fourth options - 1
+--------------------------
+Fourth Place:
+4 - Arluene Gatty	
+first options - 0
+second options - 0
+third options - 5
+fourth options - 7
+--------------------------
+GSU Elections
+Voting Students = 19
+Winner:
+1 - Nelie Siburn	
+first options - 15  - Percentage 78.94736842105263 %
+second options - 0  - Percentage 0.0 %
+third options - 0  - Percentage 0.0 %
+fourth options - 4  - Percentage 21.05263157894737 %
+--------------------------
+Runner Up:
+2 - Filberte Espinay	
+first options - 3
+second options - 0
+third options - 3
+fourth options - 13
+--------------------------
+Third Place:
+3 - Ferd Dorbon	
+first options - 1
+second options - 15
+third options - 3
+fourth options - 0
+--------------------------
+Fourth Place:
+4 - Massimo Corradini	
+first options - 0
+second options - 4
+third options - 13
+fourth options - 2
+--------------------------
+FACH Elections
+Voting Students = 19
+Winner:
+1 - Rayna MacDonogh	
+first options - 15  - Percentage 78.94736842105263 %
+second options - 1  - Percentage 5.2631578947368425 %
+third options - 2  - Percentage 10.526315789473685 %
+fourth options - 1  - Percentage 5.2631578947368425 %
+--------------------------
+Runner Up:
+2 - Bevan Shirley	
+first options - 3
+second options - 2
+third options - 1
+fourth options - 1
+--------------------------
+Third Place:
+3 - Karry Arnefield	
+first options - 0
+second options - 0
+third options - 0
+fourth options - 0
+--------------------------
+Fourth Place:
+4 - Randolph Witterick	
+first options - 0
+second options - 0
+third options - 0
+fourth options - 0
+--------------------------
+FEH Elections
+Voting Students = 18
+Winner:
+1 - Berkeley Elkington	
+first options - 15  - Percentage 83.33333333333333 %
+second options - 0  - Percentage 0.0 %
+third options - 0  - Percentage 0.0 %
+fourth options - 3  - Percentage 16.666666666666668 %
+--------------------------
+Runner Up:
+2 - Cheslie Gareisr	
+first options - 2
+second options - 14
+third options - 3
+fourth options - 0
+--------------------------
+Third Place:
+3 - Tiffany Yesenin	
+first options - 1
+second options - 1
+third options - 2
+fourth options - 13
+--------------------------
+Fourth Place:
+4 - Nobe Jurisch	
+first options - 0
+second options - 3
+third options - 13
+fourth options - 2
+--------------------------
+BS Elections
+Voting Students = 20
+Winner:
+1 - Aretha Giorio	
+first options - 15  - Percentage 75.0 %
+second options - 2  - Percentage 10.0 %
+third options - 1  - Percentage 5.0 %
+fourth options - 2  - Percentage 10.0 %
+--------------------------
+Runner Up:
+2 - Ross Bernardotte	
+first options - 3
+second options - 1
+third options - 3
+fourth options - 13
+--------------------------
+Third Place:
+3 - Klemens Gremain	
+first options - 2
+second options - 1
+third options - 12
+fourth options - 5
+--------------------------
+Fourth Place:
+4 - Verne Bernon	
+first options - 0
+second options - 16
+third options - 4
+fourth options - 0
